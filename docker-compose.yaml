@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    container_name: symbiota-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./symbiota:/var/www/html/symbiota
+      - ./Docker/media:/var/www/symbiota-media
+      - ./Docker/tmp:/var/www/symbiota-tmp
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:12.0
+    container_name: symbiota-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+    volumes:
+      - ./Docker/db:/var/lib/mysql
+      - ./Docker/db_init:/docker-entrypoint-initdb.d
