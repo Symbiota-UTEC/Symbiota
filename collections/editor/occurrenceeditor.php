@@ -561,6 +561,190 @@ else{
 	<script src="../../js/symb/collections.editor.imgtools.js?ver=4" type="text/javascript"></script>
 	<script src="../../js/jquery.imagetool-1.7.js?ver=140310" type="text/javascript"></script>
 	<script src="../../js/symb/collections.editor.query.js?ver=6" type="text/javascript"></script>
+
+<style id="occurrenceeditor-green-theme">
+:root{
+  --leaf-50:#f0fdf4;
+  --leaf-100:#dcfce7;
+  --leaf-200:#bbf7d0;
+  --leaf-300:#86efac;
+  --leaf-400:#4ade80;
+  --leaf-500:#22c55e;
+  --leaf-600:#16a34a;
+  --leaf-700:#15803d;
+  --leaf-800:#166534;
+  --leaf-900:#14532d;
+  --ink-800:#1f2937;
+  --ink-600:#374151;
+  --ink-400:#9ca3af;
+  --paper:#ffffff;
+}
+
+body.symb-green{
+  background: linear-gradient(180deg,var(--leaf-50), #ffffff 420px) fixed;
+  color: var(--ink-800);
+  font-family: system-ui,-apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+#innertext{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 20px 40px;
+}
+
+#titleDiv{
+  background: linear-gradient(135deg,var(--leaf-100),var(--leaf-50));
+  border: 1px solid var(--leaf-200);
+  border-radius: 16px;
+  padding: 18px 22px;
+  box-shadow: 0 6px 24px rgba(20,83,45,.08);
+  margin-bottom: 16px;
+}
+#titleDiv .page-heading{
+  color: var(--leaf-900) !important;
+  font-weight: 800;
+  letter-spacing: .3px;
+  margin: 0;
+}
+
+.panel, .editblock, .data-panel, .ui-widget-content{
+  background: var(--paper);
+  border: 1px solid var(--leaf-200) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 18px rgba(20,83,45,.06);
+  padding: 14px 16px;
+}
+
+/* Tabs */
+.ui-tabs .ui-tabs-nav{
+  background: var(--leaf-50);
+  border: 1px solid var(--leaf-200);
+  border-radius: 12px;
+  padding: 6px;
+}
+.ui-tabs .ui-tabs-nav li a{
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a{
+  background: var(--leaf-400) !important;
+  color: #053b1c !important;
+  font-weight: 700;
+}
+
+/* Buttons & inputs */
+button, .button, input[type=submit], input[type=button], .ui-button{
+  background: var(--leaf-600) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(34,197,94,.24);
+  transition: transform .05s ease-in-out, box-shadow .2s ease;
+}
+button:hover, .button:hover, input[type=submit]:hover, input[type=button]:hover, .ui-button:hover{
+  background: var(--leaf-700) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(21,128,61,.26);
+}
+button:disabled, input[disabled]{
+  background: var(--leaf-200) !important;
+  color: var(--ink-400) !important;
+  box-shadow: none !important;
+}
+
+input[type=text], input[type=number], input[type=date], select, textarea{
+  border-radius: 10px !important;
+  border: 1px solid var(--leaf-300) !important;
+  outline: none !important;
+  padding: 8px 10px !important;
+  background: #fff !important;
+}
+input[type=text]:focus, input[type=number]:focus, input[type=date]:focus, select:focus, textarea:focus{
+  border-color: var(--leaf-600) !important;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.18);
+}
+
+/* Tables */
+table{
+  border-collapse: separate !important;
+  border-spacing: 0;
+  width: 100%;
+}
+th{
+  background: var(--leaf-100);
+  color: #064e3b;
+  text-align: left;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+td{ padding: 8px 10px; }
+tbody tr:nth-child(odd){ background: #fafafa; }
+tbody tr:hover{ background: var(--leaf-50); }
+
+/* Badges / chips */
+.badge, .countchip{
+  display: inline-block;
+  background: var(--leaf-100);
+  color: var(--leaf-900);
+  border: 1px solid var(--leaf-300);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Status messages */
+#statusdiv{
+  border: 1px solid var(--leaf-300) !important;
+  background: var(--leaf-50) !important;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+select[name=confidenceranking] {
+  min-width: 240px;      /* make wider */
+  height: 38px;          /* make taller */
+  font-size: 14px;       /* adjust text size */
+  padding: 6px 10px;     /* inner padding */
+}
+
+select[name=basisofrecord] {
+  min-width: 240px;      /* make wider */
+  height: 38px;          /* make taller */
+  font-size: 14px;       /* adjust text size */
+  padding: 6px 10px;     /* inner padding */
+}
+
+select[name=recordsecurity] {
+  min-width: 240px;      /* make wider */
+  height: 38px;          /* make taller */
+  font-size: 14px;       /* adjust text size */
+  padding: 6px 10px;     /* inner padding */
+}
+
+select[name=processingstatus] {
+  min-width: 240px;      /* make wider */
+  height: 38px;          /* make taller */
+  font-size: 14px;       /* adjust text size */
+  padding: 6px 10px;     /* inner padding */
+}
+
+/* Links */
+a{ color: var(--leaf-700); font-weight: 600; }
+a:hover{ color: var(--leaf-900); text-decoration: underline; }
+
+/* Sticky footer spacing for long forms */
+footer{ margin-top: 28px; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.body.classList.add('symb-green');
+});
+</script>
 </head>
 <body>
 	<div role="main" id="innertext">
@@ -663,7 +847,7 @@ else{
 									<a href="#occdiv">
 										<?php
 										if($occId) echo (isset($LANG['OCC_DATA'])?$LANG['OCC_DATA']:'Occurrence Data');
-										else echo '<span style="color:red;">'.(isset($LANG['NEW_OCC_RECORD'])?$LANG['NEW_OCC_RECORD']:'New Occurrence Record').'</span>';
+										else echo '<span style="color:green;">'.(isset($LANG['NEW_OCC_RECORD'])?$LANG['NEW_OCC_RECORD']:'New Occurrence Record').'</span>';
 										?>
 									</a>
 								</li>
