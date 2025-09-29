@@ -484,7 +484,182 @@ else{
 <!DOCTYPE html>
 <html lang="<?php echo $LANG_TAG ?>">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=<?= $CHARSET; ?>">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style id="plant-dark-theme">
+  :root {
+    /* Forest green palette inspired by reference */
+    --bg: #0f2318;          /* deep forest */
+    --bg-elev-1: #0f2318;   /* card/list background */
+    --bg-elev-2:rgb(59, 100, 77);   /* inputs/headers */
+    --card: #0f2318;        /* panels/cards */
+    --headline: #dfecc7;    /* big headings (pale green) */
+    --text:rgb(92, 117, 95);        /* high-contrast text */
+    --text-dim:rgb(86, 130, 98);    /* secondary text */
+    --muted: #9fb7a7;       /* placeholders, hints */
+    --primary: #a7e08f;     /* leaf green */
+    --primary-600: #7fc47c; /* darker leaf */
+    --accent: #d8f3b6;      /* soft mint for links ---- no*/ 
+    --border: #2a5a43;      /* outline/borders */
+    --ring: rgba(167, 224, 143, 0.55); /* focus */
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --success: #22c55e;
+    --shadow: 0 10px 24px rgba(8, 20, 14, 0.6);
+    --radius: 16px;
+    --radius-sm: 12px;
+    --radius-xs: 10px;
+  }
+
+  html, body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Nav / top bars */
+  .navbar, .topbar, header, .panel-heading {
+    background: var(--bg-elev-2) !important;
+    color: var(--text) !important;
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: var(--shadow) !important;
+  }
+
+  /* Big titles should echo the pale green headline */
+  h1, .display-1, .hero-title { color: var(--headline) !important; letter-spacing: .4px; font-weight: 800 !important; }
+  h2, h3, h4, h5, h6 { color: var(--text) !important; font-weight: 700 !important; letter-spacing: .2px; }
+
+  /* Cards / panels */
+  .card, .panel, .box, .container, .content, .wrapper, .well, .panel-body, .panel-default, .panel-footer, .widget {
+    background: var(--card) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow) !important;
+  }
+
+  /* Links */
+  a, a:visited { color: var(--accent) !important; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Inputs */
+  input[type="text"], input[type="number"], input[type="email"], input[type="search"],
+  input[type="password"], input[type="date"], input[type="time"], input[type="url"],
+  select, textarea {
+    background: var(--bg-elev-1) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-xs) !important;
+    padding: 10px 12px !important;
+    outline: none !important;
+    transition: box-shadow .15s ease, border-color .15s ease, background-color .2s ease;
+  }
+  input::placeholder, textarea::placeholder { color: var(--muted) !important; }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--ring) !important;
+    background: var(--bg-elev-2) !important;
+  }
+  fieldset { border: 1px solid var(--border) !important; border-radius: var(--radius-sm) !important; }
+  legend { color: var(--text-dim) !important; }
+
+  /* Buttons */
+  .btn, button, input[type="button"], input[type="submit"], .button {
+    appearance: none !important;
+    background: linear-gradient(180deg, var(--primary), var(--primary-600)) !important;
+    color: #082012 !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    border-radius: var(--radius-xs) !important;
+    padding: 10px 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: .2px;
+    box-shadow: 0 6px 16px rgba(7, 26, 16, 0.6), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+    transition: transform .05s ease, box-shadow .2s ease, filter .15s ease;
+    cursor: pointer;
+  }
+  .btn:hover, button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 8px 20px rgba(7, 26, 16, 0.7), inset 0 1px 0 rgba(255,255,255,0.14) !important;
+  }
+  .btn:active, button:active, input[type="button"]:active, input[type="submit"]:active, .button:active { transform: translateY(1px); }
+  .btn-secondary, .button.outline, .btn-outline {
+    background: transparent !important;
+    color: var(--headline) !important;
+    border: 1px solid var(--headline) !important;
+  }
+  .btn-danger { background: linear-gradient(180deg, var(--danger), #b91c1c) !important; color: #fff !important; }
+  .btn-warning { background: linear-gradient(180deg, var(--warning), #b45309) !important; color: #111 !important; }
+  .btn-success { background: linear-gradient(180deg, var(--success), #15803d) !important; color: #eafff0 !important; }
+
+  /* Pills / filters */
+  .pill, .chip, .badge, .label {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg-elev-2);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  /* Tables */
+  table {
+    background: var(--bg-elev-1) !important;
+    color: var(--text) !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden;
+  }
+  thead th {
+    background: var(--bg-elev-2) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 12px 10px !important;
+    text-align: left;
+    color: var(--headline) !important;
+  }
+  tbody tr:nth-child(odd) { background: rgba(205, 240, 200, 0.03) !important; }
+  tbody tr:hover { background: rgba(167, 224, 143, 0.10) !important; }
+  td, th { border-bottom: 1px solid var(--border) !important; padding: 10px !important; }
+
+  /* Alerts */
+  .alert, .message, .notice {
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--border) !important;
+    background: var(--bg-elev-1) !important;
+    color: var(--text) !important;
+    box-shadow: var(--shadow) !important;
+  }
+
+  /* Dividers & misc */
+  hr { border: none; height: 1px; background: var(--border) !important; }
+  .rounded { border-radius: var(--radius) !important; }
+  .shadow { box-shadow: var(--shadow) !important; }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: var(--bg-elev-1); }
+  ::-webkit-scrollbar-thumb { background: #1b3a2b; border: 3px solid var(--bg-elev-1); border-radius: 10px; }
+
+  /* Code blocks */
+  code, pre, kbd, samp {
+    background: #0e251a !important;
+    color: #eafff5 !important;
+    border-radius: 10px !important;
+    border: 1px solid #1f4232 !important;
+  }
+</style>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=<?= $CHARSET; ?>">
 	<title><?= $DEFAULT_TITLE . ' ' . $LANG['OCCEDITOR'] ?></title>
 	<link href="<?= $CSS_BASE_PATH ?>/jquery-ui.css" type="text/css" rel="stylesheet">
 	<link href="<?= $CSS_BASE_PATH ?>/symbiota/variables.css" type="text/css" rel="stylesheet">
