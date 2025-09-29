@@ -1655,6 +1655,36 @@ document.addEventListener('DOMContentLoaded', function(){
 											<br/>
 											<input type="text" name="substrate" maxlength="500" value="<?php echo array_key_exists('substrate',$occArr)?$occArr['substrate']:''; ?>" onchange="fieldChanged('substrate');" />
 										</div>
+
+										<!-- Custom fields: Microclimate & Endemism Level (aligned with native layout, EN) -->
+										<?php
+											$microclimateVal  = isset($occArr['microclimate']) ? $occArr['microclimate'] : (isset($_POST['microclimate']) ? $_POST['microclimate'] : '');
+											$endemismLevelVal = isset($occArr['endemism_level']) ? $occArr['endemism_level'] : (isset($_POST['endemism_level']) ? $_POST['endemism_level'] : '');
+										?>
+										<div id="microclimateEndemismDiv" class="fieldGroup-div">
+										<div class="field-div">
+											<label for="microclimate" class="control-label">Specimen Microclimate</label>
+											<a href="#" onclick="return dwcDoc('habitat');" tabindex="-1"><img class="docimg" src="../../images/qmark.png" /></a>
+											<br/>
+											<input type="text" id="microclimate" name="microclimate"
+												class="input-xxlarge"
+												value="<?php echo htmlspecialchars($microclimateVal ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+												onchange="fieldChanged('microclimate');"
+												placeholder="e.g., cloud forest" />
+										</div>
+										<div class="field-div">
+											<label for="endemism_level" class="control-label">Endemism Level</label>
+											<a href="#" onclick="return dwcDoc('occurrenceRemarks');" tabindex="-1"><img class="docimg" src="../../images/qmark.png" /></a>
+											<br/>
+											<input type="text" id="endemism_level" name="endemism_level"
+												class="input-xxlarge"
+												value="<?php echo htmlspecialchars($endemismLevelVal ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+												onchange="fieldChanged('endemism_level');"
+												placeholder="e.g., national endemic / regional endemic / non-endemic" />
+										</div>
+										</div>
+										<!-- /Custom fields -->
+
 										<?php
 										if(!empty($QUICK_HOST_ENTRY_IS_ACTIVE)) { // Quick host field
 											$quickHostArr = $occManager->getQuickHost();
