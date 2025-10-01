@@ -47,7 +47,7 @@ class OccurrenceEditorManager {
 			'verbatimcoordinates' => 's','footprintwkt' => 's','georeferencedby' => 's','georeferenceprotocol' => 's','georeferencesources' => 's','georeferenceverificationstatus' => 's',
 			'georeferenceremarks' => 's','minimumelevationinmeters' => 'n','maximumelevationinmeters' => 'n','verbatimelevation' => 's','minimumdepthinmeters' => 'n','maximumdepthinmeters' => 'n',
 			'verbatimdepth' => 's','storagelocation' => 's','disposition' => 's','language' => 's','duplicatequantity' => 'n','labelproject' => 's','processingstatus' => 's',
-			'recordenteredby' => 's','observeruid' => 'n','dateentered' => 'd');
+			'recordenteredby' => 's','observeruid' => 'n','dateentered' => 'd', 'microclimate' => 's', 'endemism_level' => 's');
 		$this->fieldArr['omoccurpaleo'] = array('eon','era','period','epoch','earlyInterval','lateInterval','absoluteAge','stage','localStage','biota','biostratigraphy',
 			'lithogroup','formation','taxonEnvironment','member','bed','lithology','stratRemarks','element','slideProperties','geologicalContextID');
 		$this->fieldArr['omoccuridentifiers'] = array('idname', 'idvalue');
