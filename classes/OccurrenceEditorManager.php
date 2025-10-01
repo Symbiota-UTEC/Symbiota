@@ -1317,6 +1317,9 @@ class OccurrenceEditorManager {
 			}
 
 			$sql .= ')';
+
+			error_log($sql);
+
 			if ($this->conn->query($sql)) {
 				$this->occid = $this->conn->insert_id;
 				//Update collection stats
@@ -1394,6 +1397,7 @@ class OccurrenceEditorManager {
 					$status .= $this->linkDuplicates($postArr['linkdupe'], $dupTitle);
 				}
 			} else {
+				error_log("insert failed: " . $this->conn->error);
 				$status = $LANG['FAILED_ADD_OCC'] . ": " . $this->conn->error . '<br/>SQL: ' . $sql;
 			}
 		}

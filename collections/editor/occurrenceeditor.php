@@ -173,6 +173,7 @@ if($SYMB_UID){
 		//Only full editors can perform following actions
 		if($isEditor == 1 || $isEditor == 2){
 			if($action == 'addOccurRecord'){
+				error_log("Adding Ocurrence Record");
 				if($occManager->addOccurrence($_POST)){
 					$occManager->setQueryVariables();
 					$qryCnt = $occManager->getQueryRecordCount();

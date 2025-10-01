@@ -355,6 +355,13 @@ if ($SYMB_UID) {
 									<?= $LANG['ADD_NEW_OCCUR'] ?>
 								</a><?= $deactivateTag ?>
 							</li>
+							<!-- New part for uploading CSV -->
+							<li style="margin-left:10px">
+								<a href="../editor/occurrencecsvsubmit.php?collid=<?= $collid ?>" <?= $deactivateStyle ?>>
+									<?= $LANG['ADD_OCCUR_CSV'] ?? 'Add Occurrence Records via CSV' ?>
+								</a><?= $deactivateTag ?>
+							</li>
+							<!-- End of new part for CSV -->
 							<?php
 							if (strpos($collData['colltype'], 'Specimens')) {
 								?>

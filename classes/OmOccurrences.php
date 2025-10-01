@@ -18,6 +18,7 @@ use Symfony\Component\HttpKernel\DataCollector\LateDataCollectorInterface;
 include_once($SERVER_ROOT.'/config/dbconnection.php');
 $connection = MySQLiConnectionFactory::getCon("write");
 
+// Clas de Ocurrencias
 class OmOccurrences  {
 	
  const DEBUG = true;
