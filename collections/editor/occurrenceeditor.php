@@ -479,7 +479,7 @@ if($SYMB_UID){
 
 }
 else{
-	header('Location: ../../profile/index.php?refurl=../collections/editor/occurrenceeditor.php?'.htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES));
+	header('Location: ../../profile/index-wrapper-login.php?refurl=../collections/editor/occurrenceeditor.php?'.htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES));
 }
 ?>
 <!DOCTYPE html>

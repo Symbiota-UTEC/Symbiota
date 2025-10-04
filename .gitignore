@@ -4,9 +4,9 @@
 /footer.php
 /header.php
 /leftmenu.php
-/index.php
-includes/footer.php
-includes/head.php
+#/index.php
+#includes/footer.php
+#includes/head.php
 includes/leftmenu.php
 includes/spprofilehead.php
 includes/usagepolicy.php

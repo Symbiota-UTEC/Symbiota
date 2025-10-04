@@ -1,114 +1,200 @@
 <?php
-include_once( '/var/www/html/symbiota/content/lang/templates/header.en.php'); 
+include_once('../config/symbini.php');
 ?>
 
+<!-- (Opcional si no la cargas en otro lado) Fuente Playfair Display -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --leaf-50:#f0fdf4;
-  --leaf-100:#dcfce7;
-  --leaf-200:#bbf7d0;
-  --leaf-300:#86efac;
-  --leaf-400:#4ade80;
-  --leaf-500:#22c55e;
-  --leaf-600:#16a34a;
-  --leaf-700:#15803d;
-  --leaf-800:#166534;
-  --leaf-900:#14532d;
-  --ink-800:#1f2937;
-  --ink-600:#374151;
-  --ink-400:#9ca3af;
-  --paper:#ffffff;
-}
+    /* ====== Scope para esta pantalla ====== */
+    .insert-page {
+        --brand-wine: rgb(117, 26, 29);
+        --brand-wine-10: rgba(117, 26, 29, .10);
+        --brand-wine-15: rgba(117, 26, 29, .15);
+        --brand-wine-20: rgba(117, 26, 29, .20);
+        --black: var(--black, #111);
+        --white: var(--white, #fff);
+        --light-grey: var(--light-grey, #EAEAEA);
+        font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    }
 
-body.symb-green{
-  background: linear-gradient(180deg,var(--leaf-50), #ffffff 420px) fixed;
-  color: var(--ink-800);
-  font-family: system-ui,-apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji","Segoe UI Emoji";
-}
+    /* ====== Mini Navbar (volver) ====== */
+    .insert-page .mini-navbar {
+        position: sticky; top: 0; z-index: 10;
+        background: var(--brand-wine);
+        color: var(--white);
+        border-bottom: 1px solid var(--brand-wine-20);
+    }
+    .insert-page .mini-navbar-inner {
+        max-width: 105rem; margin: 0 auto;
+        display: flex; align-items: center; gap: .75rem;
+        padding: .75rem 1rem;
+    }
+    .insert-page .mini-nav-back {
+        display: inline-flex; align-items: center; gap: .5rem;
+        background: rgba(255,255,255,.12);
+        border: 1px solid rgba(255,255,255,.22);
+        color: var(--white);
+        padding: .5rem .9rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: background .2s ease, transform .08s ease;
+    }
+    .insert-page .mini-nav-back:hover { background: rgba(255,255,255,.18); }
+    .insert-page .mini-nav-back:active { transform: translateY(1px); }
+    .insert-page .mini-navbar-title {
+        margin-left: .25rem;
+        font-size: 1rem; font-weight: 500;
+        opacity: .95;
+    }
 
-/* Wrapper */
-.insert-options-wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+    /* ====== Layout ====== */
+    .insert-page .insert-options-wrapper{
+        max-width: 105rem;
+        margin: 1.25rem auto 0 auto;
+    }
+    .insert-page .options-grid{
+        display: grid;
+        grid-template-columns: repeat(3,minmax(0,1fr));
+        gap: 2rem;
+    }
+    @media (max-width: 991px){ .insert-page .options-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 479px){ .insert-page .options-grid{ grid-template-columns: 1fr; } }
 
-/* Cards estilo verde */
-.option-card {
-  background: var(--paper);
-  border: 1px solid var(--leaf-200);
-  border-radius: 14px;
-  box-shadow: 0 4px 18px rgba(20,83,45,.08);
-  padding: 1.5rem;
-  text-align: center;
-  transition: transform .15s ease, box-shadow .2s ease;
-}
-.option-card:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 8px 26px rgba(21,128,61,.15);
-}
-.option-card h2 {
-  color: var(--leaf-800);
-  font-weight: 800;
-}
-.option-card p {
-  color: var(--ink-600);
-  margin-bottom: 1rem;
-}
+    /* ====== Tarjetas ====== */
+    .insert-page .option-card{
+        background: var(--white);
+        border: 1px solid var(--light-grey);
+        border-radius: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .insert-page .option-card:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+        border-color: var(--brand-wine);
+    }
 
-/* Botones */
-button, .button {
-  background: var(--leaf-600) !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 12px !important;
-  padding: 10px 16px !important;
-  font-weight: 700 !important;
-  box-shadow: 0 4px 16px rgba(34,197,94,.24);
-  transition: transform .05s ease-in-out, box-shadow .2s ease;
-}
-button:hover, .button:hover {
-  background: var(--leaf-700) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(21,128,61,.26);
-}
+    /* ====== Tipografías / Colores ====== */
+    .insert-page .page-title{
+        text-align: center;
+        color: var(--black);
+        font-weight: 500;
+        margin: 0 0 2rem 0;
+        font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    }
+    .insert-page .option-card h2{
+        font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 .25rem 0;
+        color: var(--brand-wine);
+    }
+    .insert-page .option-card p{
+        color: var(--black);
+        opacity: .85;
+        margin: 0 0 .75rem 0;
+    }
+
+    /* ====== Acciones ====== */
+    .insert-page .option-actions{
+        margin-top: auto;
+        display: flex;
+        gap: .75rem;
+    }
+
+    /* ====== Botones (estilos locales, no pisan global) ====== */
+    .insert-page .btn {
+        appearance: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        border-radius: 999px;
+        padding: .6rem 1.1rem;
+        font-size: .95rem;
+        line-height: 1;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease, color .2s ease, transform .08s ease;
+        font-family: inherit;
+    }
+    .insert-page .btn:active { transform: translateY(1px); }
+
+    .insert-page .btn-primary {
+        background: var(--brand-wine);
+        color: var(--white);
+        border-color: var(--brand-wine);
+    }
+    .insert-page .btn-primary:hover { background: #8f1f23; }
+
+    .insert-page .btn-ghost {
+        background: transparent;
+        color: var(--brand-wine);
+        border-color: var(--brand-wine);
+    }
+    .insert-page .btn-ghost:hover { background: var(--brand-wine-10); }
+
+    /* ====== Línea decorativa bajo el título ====== */
+    .insert-page .page-title + .title-underline {
+        width: 72px; height: 4px; border-radius: 999px;
+        background: linear-gradient(90deg, var(--brand-wine), var(--brand-wine-15));
+        margin: .75rem auto 2rem auto;
+    }
 </style>
 
-<div class="insert-options-wrapper">
-  <h1 style="text-align:center; margin-bottom: 2rem; color: var(--leaf-900); font-weight: 800;">
-    Selecciona una opción de inserción
-  </h1>
-  
-  <div class="options-grid" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-    
-    <div class="option-card">
-      <h2>Crear una nueva colección</h2>
-      <p>Puedes crear una colección desde cero.</p>
-      <form method="get" action="<?= $CLIENT_ROOT ?>/collections/crearcoleccion.php">
-        <button type="submit">Ir</button>
-      </form>
+<section class="insert-page padding-global section-padding-large">
+    <!-- Mini Navbar con “Volver” -->
+    <nav class="mini-navbar" aria-label="secondary-nav">
+        <div class="mini-navbar-inner">
+            <button class="mini-nav-back" type="button" onclick="window.history.back()">
+                <span>Volver</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="insert-options-wrapper">
+        <h1 class="page-title heading-style-h2 weight-medium">Selecciona una opción de inserción</h1>
+        <div class="title-underline" aria-hidden="true"></div>
+
+        <div class="options-grid">
+            <!-- Card 1 -->
+            <div class="option-card">
+                <h2 class="heading-style-h5 weight-medium">Crear una nueva colección</h2>
+                <p class="text-size-regular">Puedes crear una colección desde cero.</p>
+
+                <div class="option-actions">
+                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/misc/collmetadata.php">
+                        <button type="submit" class="btn btn-primary">Ir</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="option-card">
+                <h2 class="heading-style-h5 weight-medium">Insertar CSV a colección existente</h2>
+                <p class="text-size-regular">Sube un archivo CSV con registros.</p>
+
+                <div class="option-actions">
+                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/importcsv.php">
+                        <button type="submit" class="btn btn-primary">Ir</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="option-card">
+                <h2 class="heading-style-h5 weight-medium">Insertar registro a colección existente</h2>
+                <p class="text-size-regular">Agrega manualmente un nuevo registro.</p>
+
+                <div class="option-actions">
+                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/editor/occurrenceeditor.php">
+                        <button type="submit" class="btn btn-primary">Ir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-    <div class="option-card">
-      <h2>Insertar CSV a colección existente</h2>
-      <p>Sube un archivo CSV con registros.</p>
-      <form method="get" action="<?= $CLIENT_ROOT ?>/collections/importcsv.php">
-        <button type="submit">Ir</button>
-      </form>
-    </div>
-
-    <div class="option-card">
-      <h2>Insertar registro a colección existente</h2>
-      <p>Agrega manualmente un nuevo registro.</p>
-      <form method="get" action="<?= $CLIENT_ROOT ?>/collections/editor/occurrenceeditor.php">
-        <button type="submit">Ir</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Botón de volver -->
-  <div style="margin-top: 3rem; text-align:center;">
-    <button class="button button-secondary" onclick="window.history.back()">⬅ Volver</button>
-  </div>
-</div>
-
+</section>

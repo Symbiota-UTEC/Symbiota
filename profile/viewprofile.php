@@ -115,6 +115,7 @@ if($isEditor){
 ?>
 <!DOCTYPE html>
 <html lang="<?= $LANG_TAG ?>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <head>
 	<title><?= $DEFAULT_TITLE . ' - ' . $LANG['VIEW_PROFILE']; ?></title>
 	<link href="<?= $CSS_BASE_PATH; ?>/jquery-ui.css" type="text/css" rel="stylesheet">
@@ -139,10 +140,6 @@ if($isEditor){
 	$displayLeftMenu = (isset($profile_viewprofileMenu)?$profile_viewprofileMenu:"true");
 	include($SERVER_ROOT.'/includes/header.php');
 	?>
-	<div class="navpath">
-		<a href='../index.php'><?= $LANG['HOME'] ?></a> &gt;&gt;
-		<a href="../profile/viewprofile.php"><?= $LANG['MY_PROFILE'] ?></a>
-	</div>
 	<div role="main" id="innertext">
 		<h1 class="page-heading screen-reader-only"><?= $LANG['VIEW_PROFILE']; ?></h1>
 		<?php

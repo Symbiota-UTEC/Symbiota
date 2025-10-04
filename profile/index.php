@@ -17,7 +17,7 @@ if($SYMB_UID){
 		header("Location:" . $_REQUEST['refurl']);
 	}
 	else{
-		header("Location:" . GeneralUtil::getDomain() . $CLIENT_ROOT . '/profile/viewprofile.php');
+		header("Location:" . GeneralUtil::getDomain() . $CLIENT_ROOT . '/profile/portal.php');
 	}
 }
 
@@ -148,6 +148,7 @@ if (array_key_exists('last_message', $_SESSION)){
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $LANG_TAG ?>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <head>
 	<title><?php echo $DEFAULT_TITLE . ' ' . $LANG['LOGIN_NAME']; ?></title>
 	<?php
