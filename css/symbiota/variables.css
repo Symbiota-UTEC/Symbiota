@@ -1,24 +1,47 @@
 /* Variables
    ========================================================================== */
-:root {
-  --header-bg-image: url("../../images/layout/jonathan-borba-Ui73wdp0wok-unsplash.jpg");
-  --header-bg-color: #2f6e5378; /** Transparent color if adding header bg-image **/
-  --header-font-color: #fff;
-  --brand-font-size: 1.5rem;
-  --logo-width: 120px;
-  --menu-top-bg-color: #1b3d2f;
-  --menu-font-size: 1rem;
-  --body-bg-color: #fafafa;
-  --body-text-color: #000000;
-  --body-font-size: 1rem;
-  --body-font-family: "Open Sans", sans-serif;
-  --footer-bg-color: #f2f0e9;
-  --heading-font-family: "Open Sans", sans-serif;
-  --link-color: #126c00;
-  --darkest-color: #1b3d2f;
-  --medium-color: #5a5a53;
-  --light-color: #f2f0e9;
-  --bright-color: #b9d432;
-  --danger-color: #b31b1b;
-  --max-innertext-width: 1024px;
-}
+   :root {
+    /* Backgrounds & fonts */
+    --header-bg-image: url("../../images/layout/jonathan-borba-Ui73wdp0wok-unsplash.jpg");
+    --header-bg-color: #2f6e5378; /* keep if you use header image overlay */
+    --header-font-color: #fff;
+    --brand-font-size: 1.5rem;
+    --logo-width: 120px;
+    --menu-top-bg-color: #1b3d2f; /* can be adjusted to a green if you want, e.g. var(--leaf-800) */
+    --menu-font-size: 1rem;
+  
+    /* New palette */
+    --leaf-50:#549467;
+    --leaf-100:#dcfce7;
+    --leaf-200:#205232;
+    --leaf-300:#29b35c;
+    --leaf-400:#4ade80;
+    --leaf-500:#22c55e;
+    --leaf-600:#16a34a;
+    --leaf-700:#15803d;
+    --leaf-800:#166534;
+    --leaf-900:#14532d;
+    --ink-800:#1f2937;
+    --ink-600:#374151;
+    --ink-400:#9ca3af;
+    --paper:#6ca66d;
+  
+    /* Map existing tokens to palette */
+    --body-bg-color: var(--paper);
+    --body-text-color: var(--ink-800);
+    --body-font-size: 1rem;
+    --body-font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+  
+    --heading-font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+  
+    --link-color: var(--leaf-700);
+    --darkest-color: var(--leaf-900);
+    --medium-color: var(--leaf-700);
+    --light-color: var(--leaf-100);
+    --bright-color: var(--leaf-600);
+    --danger-color: #b31b1b;
+  
+    --footer-bg-color: var(--leaf-50);
+    --max-innertext-width: 1200px;
+  }
+  

@@ -12,11 +12,10 @@ $collectionSearchPage = !empty($SHOULD_USE_HARVESTPARAMS) ? '/collections/index.
 				<?php
 				if ($USER_DISPLAY_NAME) {
 					?>
-					<div class="welcome-text bottom-breathing-room-rel">
-						<?= $LANG['H_WELCOME'] . ' ' . $USER_DISPLAY_NAME ?>!
-					</div>
+
+					<!-- Este codigo fue agregado en español -->
 					<span id="insertData">
-						<form name="insertDataForm" method="get" action="<?= $CLIENT_ROOT ?>/collections/editor/occurrenceeditor.php">
+						<form name="insertDataForm" method="get" action="<?= $CLIENT_ROOT ?>/collections/selectinsertionmethod.php">
 							<button class="button button-primary bottom-breathing-room-rel left-breathing-room-rel" 
 									name="insertDataButton" 
 									type="submit">Insertar Datos</button>
@@ -50,14 +49,11 @@ $collectionSearchPage = !empty($SHOULD_USE_HARVESTPARAMS) ? '/collections/index.
 			</nav>
 			<div class="top-brand">
 				<a href="<?= $CLIENT_ROOT ?>">
-					<div class="image-container">
+					<!-- <div class="image-container">
 						<img src="<?= $CLIENT_ROOT ?>/images/layout/logo_symbiota.png" alt="Symbiota logo">
-					</div>
+					</div> -->
 				</a>
-				<div class="brand-name">
-					<h1>Symbiota Brand New Portal</h1>
-					<h2>Redesigned by the Symbiota Support Hub</h2>
-				</div>
+
 			</div>
 		</div>
 		<div class="menu-wrapper">

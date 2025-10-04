@@ -14,7 +14,7 @@ header('Location: '.$CLIENT_ROOT.'/index.php');
 		include_once($SERVER_ROOT.'/includes/head.php');
 		?>
 	</head>
-	<body>
+	<body class="symb-green">
 		<?php
 		$displayLeftMenu = false;
 		include($SERVER_ROOT.'/includes/header.php');
