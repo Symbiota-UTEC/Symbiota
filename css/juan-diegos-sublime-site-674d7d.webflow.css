@@ -4680,4 +4680,37 @@ figcaption {
   }
 }
 
+/* === NAVBAR FIX === */
+.navbar-component{
+  position: fixed;
+  left: 0;        /* usa left/right en lugar de inset para evitar rarezas */
+  right: 0;
+  top: 1.5rem;    /* mismo margen superior que tenías */
+  margin: 0 auto; /* deja de empujar con margin-left/right del componente */
+  padding-inline: 5%;
+}
 
+.navbar-container{
+  max-width: 105rem;
+  width: 100%;
+  margin: 0 auto;                 /* ← centra el contenedor */
+  justify-content: center;        /* opcional: centra el contenido interno */
+  /* si quieres espacio entre logo y menú, usa space-between: */
+  /* justify-content: space-between; */
+}
+
+/* En tablets ya lo hacías, igualamos el comportamiento en desktop ultra-anchos */
+@media (min-width: 992px){
+  .navbar-component{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+/* Por si algún estilo heredado lo pisa, fuerza centrado de enlaces */
+.navbar-menu{
+  margin: 0 auto;
+}
