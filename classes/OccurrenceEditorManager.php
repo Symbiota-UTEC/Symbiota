@@ -2935,4 +2935,51 @@ class OccurrenceEditorManager {
 		}
 		return $newStr;
 	}
+
+	public function getAllCollections(bool $restrictToUser = false): array {
+		$ret = [];
+	
+		$sql = 'SELECT collid, collectionname FROM omcollections';
+	
+		if ($restrictToUser && isset($GLOBALS['USER_RIGHTS']) && is_array($GLOBALS['USER_RIGHTS'])) {
+			$allowed = [];
+	
+			foreach (['CollAdmin', 'CollEditor'] as $k) {
+				if (!empty($GLOBALS['USER_RIGHTS'][$k]) && is_array($GLOBALS['USER_RIGHTS'][$k])) {
+					foreach ($GLOBALS['USER_RIGHTS'][$k] as $cid) {
+						if (is_numeric($cid)) $allowed[(int)$cid] = (int)$cid;
+					}
+				}
+			}
+	
+			if (!empty($GLOBALS['USER_RIGHTS']['CollTaxon']) && is_array($GLOBALS['USER_RIGHTS']['CollTaxon'])) {
+				foreach ($GLOBALS['USER_RIGHTS']['CollTaxon'] as $pair) {
+					$tok = explode(':', $pair, 2);
+					if (isset($tok[0]) && is_numeric($tok[0])) {
+						$allowed[(int)$tok[0]] = (int)$tok[0];
+					}
+				}
+			}
+	
+			if ($allowed) {
+				$sql .= ' WHERE collid IN(' . implode(',', $allowed) . ')';
+			} else {
+				return [];
+			}
+		}
+	
+		$sql .= ' ORDER BY collectionname';
+	
+		if ($rs = $this->conn->query($sql)) {
+			while ($row = $rs->fetch_assoc()) {
+				$cid = (int)$row['collid'];
+				// Reuse your existing output cleaner
+				$name = $this->cleanOutStr($row['collectionname']);
+				$ret[$cid] = $name;
+			}
+			$rs->free();
+		}
+	
+		return $ret;
+	}
 }

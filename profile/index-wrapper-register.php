@@ -151,11 +151,7 @@
                 <div class="navbar-menu-link-wrapper">
                     <a href="../index.php" class="navbar-link w-nav-link">Home</a>
                     <a href="index-wrapper-register.php" aria-current="page" class="navbar-link w-nav-link w--current">Solicitud de Registro</a>
-                    <div id="w-node-_3f263bcd-8460-8352-49d9-9356d81af8fd-5582b6a9" class="navbar-button-wrapper">
-                        <a href="index-wrapper-login.php" class="button is-navbar w-inline-block">
-                            <div class="button-text-item">Iniciar Sesión</div>
-                        </a>
-                    </div>
+                    <a href="index-wrapper-login.php" aria-current="page" class="navbar-link w-nav-link w--current">Iniciar Sesión</a>
                 </div>
             </nav>
             <div class="navbar-menu-button w-nav-button">

@@ -110,10 +110,15 @@ include_once('./config/symbini.php');
         .pointer-events-off { pointer-events: none; }
         .pointer-events-on  { pointer-events: auto; }
 
-        /* Containers centrados */
-        .container-medium, .container-small, .container-large {
-          margin-right: auto !important;
-          margin-left: auto !important;
+        /* leave .section-services full width for background effects */
+        .section-services { padding-inline: 0; }  /* optional */
+
+        /* Centrar las 2 vistas principales del index */
+        .section-services, .container-large {
+            max-width: 1050px;
+            margin-inline: auto;     /* centers */
+            padding-inline: 2rem;
+            box-sizing: border-box;
         }
 
         /* Helpers de visibilidad */
@@ -123,12 +128,12 @@ include_once('./config/symbini.php');
         @media screen and (max-width: 479px) { .hide-mobile { display: none !important; } }
 
         /* Helpers de spacing */
-        .margin-0 { margin: 0 !important; }
-        .padding-0 { padding: 0 !important; }
-        .margin-top, .margin-right, .margin-bottom, .margin-left,
-        .margin-horizontal, .margin-vertical { margin: 0 !important; }
-        .padding-top, .padding-right, .padding-bottom, .padding-left,
-        .padding-horizontal, .padding-vertical { padding: 0 !important; }
+        /*.margin-0 { margin: 0 !important; }*/
+        /*.padding-0 { padding: 0 !important; }*/
+        /*.margin-top, .margin-right, .margin-bottom, .margin-left,*/
+        /*.margin-horizontal, .margin-vertical { margin: 0 !important; }*/
+        /*.padding-top, .padding-right, .padding-bottom, .padding-left,*/
+        /*.padding-horizontal, .padding-vertical { padding: 0 !important; }*/
       </style>
     </div>
 
@@ -205,7 +210,7 @@ include_once('./config/symbini.php');
                           style="opacity:0"
                           class="button-group is-center"
                         >
-                          <a href="contact.html" class="button w-inline-block">
+                          <a href="index.php" class="button w-inline-block">
                             <div class="button-text-item">Búsqueda por Mapa</div>
                           </a>
                         </div>

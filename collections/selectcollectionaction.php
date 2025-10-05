@@ -2,8 +2,7 @@
 include_once('../config/symbini.php');
 ?>
 
-<!-- (Opcional si no la cargas en otro lado) Fuente Playfair Display -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
 
 <style>
     /* ====== Scope para esta pantalla ====== */
@@ -142,17 +141,38 @@ include_once('../config/symbini.php');
         background: linear-gradient(90deg, var(--brand-wine), var(--brand-wine-15));
         margin: .75rem auto 2rem auto;
     }
+
+    /* Grid centrado y con espacio suficiente entre tarjetas */
+    .insert-page .options-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 360px));
+        justify-content: center;         /* centra las columnas */
+        gap: 32px;                       /* ↑ más espacio para que no se “toquen” las sombras */
+    }
+
+    /* Tarjeta base: sin solapes raros */
+    .insert-page .option-card{
+        position: relative;
+        margin: 0 !important;            /* por si algún estilo externo mete márgenes */
+        box-shadow: 0 2px 8px rgba(0,0,0,.06);
+        transition: box-shadow .2s ease, border-color .2s ease, transform .15s ease;
+    }
+
+    /* Hover: muy poco movimiento y por encima del resto */
+    .insert-page .option-card:hover{
+        transform: translateY(-2px);     /* antes -4px; ahora más sutil */
+        box-shadow: 0 8px 20px rgba(0,0,0,.09);
+        border-color: var(--brand-wine);
+        z-index: 2;                      /* flota por encima en lugar de “meterse” a la otra */
+    }
+
 </style>
 
+
 <section class="insert-page padding-global section-padding-large">
-    <!-- Mini Navbar con “Volver” -->
-    <nav class="mini-navbar" aria-label="secondary-nav">
-        <div class="mini-navbar-inner">
-            <button class="mini-nav-back" type="button" onclick="window.history.back()">
-                <span>Volver</span>
-            </button>
-        </div>
-    </nav>
+    <link rel="stylesheet" href="<?= $CLIENT_ROOT ?>/css/font.css">
+
+    <?php include_once($SERVER_ROOT . '/includes/navbar.php'); ?>
 
     <div class="insert-options-wrapper">
         <h1 class="page-title heading-style-h2 weight-medium">Selecciona una opción de inserción</h1>
@@ -173,28 +193,20 @@ include_once('../config/symbini.php');
 
             <!-- Card 2 -->
             <div class="option-card">
-                <h2 class="heading-style-h5 weight-medium">Insertar CSV a colección existente</h2>
-                <p class="text-size-regular">Sube un archivo CSV con registros.</p>
+                <h2 class="heading-style-h5 weight-medium">Insertar Datos a colección existente</h2>
+                <p class="text-size-regular">Inserción manual o por CSV.</p>
 
                 <div class="option-actions">
-                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/importcsv.php">
+                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/collections-edit-types.php">
                         <button type="submit" class="btn btn-primary">Ir</button>
                     </form>
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="option-card">
-                <h2 class="heading-style-h5 weight-medium">Insertar registro a colección existente</h2>
-                <p class="text-size-regular">Agrega manualmente un nuevo registro.</p>
-
-                <div class="option-actions">
-                    <form method="get" action="<?= $CLIENT_ROOT ?>/collections/editor/occurrenceeditor.php">
-                        <button type="submit" class="btn btn-primary">Ir</button>
-                    </form>
-                </div>
-            </div>
         </div>
 
     </div>
+
+    <?php include($SERVER_ROOT.'/includes/footer.php'); ?>
+
 </section>

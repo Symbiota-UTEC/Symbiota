@@ -10,57 +10,10 @@ $collectionSearchPage = !empty($SHOULD_USE_HARVESTPARAMS) ? '/collections/index.
 
     <header>
 		<div class="top-wrapper">
-			<nav class="top-login" aria-label="horizontal-nav">
-				<?php
-				if ($USER_DISPLAY_NAME) {
-                    $CR = rtrim($CLIENT_ROOT, '/');
-                    $uid = isset($SYMB_UID) ? (int)$SYMB_UID : 0;
-					?>
-                    <div class="navbar-container">
-                        <nav role="navigation" class="navbar-menu w-nav-menu">
-                            <div class="navbar-menu-link-wrapper">
-                                <a href="<?= $CR ?>/collections/selectinsertionmethod.php" class="navbar-link w-nav-link">Insertar Datos</a>
 
-                                <div class="navbar-button-wrapper">
-                                    <!-- “Mi Perfil” lleva al viewprofile real -->
-                                    <a href="<?= $CR ?>/profile/viewprofile.php<?= $uid ? '?userid='.$uid : '' ?>" class="button is-navbar w-inline-block">
-                                        <div class="button-text-item">Mi Perfil</div>
-                                    </a>
-                                </div>
-
-                                <div class="navbar-button-wrapper">
-                                    <a href="<?= $CR ?>/profile/index-wrapper-login.php" class="button is-navbar w-inline-block">
-                                        <div class="button-text-item">Cerrar Sesión</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </nav>
-                    <div class="navbar-menu-button w-nav-button">
-                        <div class="menu-icon">
-                            <div class="menu-icon-line-top"></div>
-                            <div class="menu-icon-line-middle">
-                                <div class="menu-icon-line-middle-inner"></div>
-                            </div>
-                            <div class="menu-icon-line-bottom"></div>
-                        </div>
-                    </div>
-					<?php
-				} else {
-					?>
-					<span id="contactUs">
-						<button class="button button-tertiary bottom-breathing-room-rel left-breathing-room-rel" onclick="window.location.href='#'"><?= $LANG['H_CONTACT_US'] ?></button>
-					</span>
-					<span id="login">
-						<form name="loginForm" method="post" action="<?= $CLIENT_ROOT . "/profile/index.php" ?>">
-							<input name="refurl" type="hidden" value="<?= htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE) . "?" . htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES) ?>">
-							<button class="button button-secondary bottom-breathing-room-rel left-breathing-room-rel" name="loginButton" type="submit"><?= $LANG['H_LOGIN'] ?></button>
-						</form>
-					</span>
-					<?php
-				}
-				?>
-			</nav>
-			<div class="top-brand">
+            <link rel="stylesheet" href="<?= $CLIENT_ROOT ?>/css/font.css">
+            <?php include_once($SERVER_ROOT . '/includes/navbar.php'); ?>
+            <div class="top-brand">
 				<a href="<?= $CLIENT_ROOT ?>">
 					<!-- <div class="image-container">
 						<img src="<?= $CLIENT_ROOT ?>/images/layout/logo_symbiota.png" alt="Symbiota logo">
@@ -74,6 +27,38 @@ $collectionSearchPage = !empty($SHOULD_USE_HARVESTPARAMS) ? '/collections/index.
 			<input class="side-menu" type="checkbox" id="side-menu" name="side-menu" />
 			<label class="hamb hamb-line hamb-label" for="side-menu" tabindex="0">☰</label>
 			<!-- Menu -->
+            <style>
+                /* Make wrapper a centering container */
+                .menu-wrapper {
+                    display: flex !important;        /* override possible grid/legacy styles */
+                    justify-content: center !important;
+                    padding: 0 !important;           /* remove side padding that offsets centering */
+                }
+
+                /* Center the black bar inside the wrapper */
+                .menu-wrapper > nav.top-menu {
+                    background: #000;
+                    width: 100%;
+                    max-width: 1200px;               /* set your desired content width */
+                    margin: 0 auto;                  /* centers within wrapper */
+                }
+
+                /* Center the links inside the bar */
+                .menu-wrapper > nav.top-menu > .menu {
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: center;
+                    gap: 32px;
+                    list-style: none;
+                    margin: 0;
+                    padding: 12px 20px;
+                }
+
+                /* kill conflicting floats/grow */
+                .menu-wrapper > nav.top-menu > .menu > li { float: none !important; flex: 0 0 auto !important; }
+                .menu-wrapper > nav.top-menu a { color:#fff; text-decoration:none; font-weight:600; }
+                .menu-wrapper > nav.top-menu a:hover { text-decoration: underline; text-underline-offset: 3px; }
+            </style>
 			<nav class="top-menu" aria-label="hamburger-nav">
 				<ul class="menu">
 					<li>
