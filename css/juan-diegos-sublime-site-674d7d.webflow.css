@@ -1318,8 +1318,7 @@ figcaption {
   padding: .5rem 1.1rem;
   font-size: .875rem;
   font-weight: 400;
-  text-decoration: underline;
-  text-decoration-thickness: calc(1em / 3.40282e38);
+  text-decoration: none;
   transition: background-color .3s;
 }
 
