@@ -4796,3 +4796,63 @@ figcaption {
 .menu-icon-line-top,
 .menu-icon-line-middle,
 .menu-icon-line-bottom { background-color: var(--white); }
+
+/* === FOOTER FIX === */
+/* Full-width footer bar, same color and feel as navbar */
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #751a1d; /* same as navbar */
+  color: var(--white);
+}
+
+/* Fallback: if markup doesn't use <footer>, apply bar color to known footer sections */
+.footer-top-wrapper,
+.footer-menu-wrapper,
+.newsletter-footer-wrapper,
+.footer-bottom {
+  background-color: #751a1d;
+  color: var(--white);
+}
+
+/* Remove side padding at the outer footer edge, keep inner content centered */
+footer .padding-global {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Center inner footer content like navbar-container */
+footer .container-large {
+  max-width: 105rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: .75rem 5%;
+  box-sizing: border-box;
+}
+
+/* Make inner sections transparent so the bar background shows */
+footer .footer-top-wrapper,
+footer .footer-bottom,
+footer .footer-menu-wrapper,
+footer .newsletter-footer-wrapper {
+  background: transparent;
+  color: inherit;
+}
+
+/* Footer links/text colors and subtle hover on dark background */
+footer .footer-link,
+footer .footer-social-link,
+footer .footer-address,
+footer .footer-credit-text {
+  color: var(--white);
+}
+
+footer .footer-link:hover {
+  background-color: rgba(255,255,255,.1);
+}
+
+/* Divider line visible on dark background */
+footer .footer-line-divider {
+  background-color: rgba(255,255,255,.3);
+}
