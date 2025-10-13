@@ -4688,7 +4688,7 @@ figcaption {
   right: 0;
   margin: 0;
   padding: 0; /* no side gap */
-  background-color: #f8f8f8bf;      /* full-width bar */
+  background-color: var(--light-grey);      /* full-width bar */
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   z-index: 1000; /* on top of content/parallax */
