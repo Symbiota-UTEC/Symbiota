@@ -2,9 +2,9 @@
   --black: #171717;
   --light-grey: #f8f8f8;
   --white: white;
-  --border-gray\<deleted\|variable-d65041a8\>: #c5c5c5;
+  --border-gray: #c5c5c5;
   --grey: #f2f2f2;
-  --grey\<deleted\|variable-305a1b7c\>: #818181;
+  --grey-dark: #818181;
   --red-dark: rgb(117, 26, 29);
 }
 
@@ -513,7 +513,7 @@ figcaption {
 }
 
 .form-input {
-  border: 1px solid var(--border-gray\<deleted\|variable-d65041a8\>);
+  border: 1px solid var(--border-gray);
   background-color: var(--white);
   color: var(--black);
   border-radius: 100rem;
@@ -890,7 +890,7 @@ figcaption {
 }
 
 .button-arrow {
-  color: var(--grey\<deleted\|variable-305a1b7c\>);
+  color: var(--grey-dark);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1328,7 +1328,7 @@ figcaption {
 }
 
 .navbar-link.w--current {
-  color: var(--\<unknown\|relume-variable-color-neutral-1\>);
+  color: var(--white);
   border-radius: 100rem;
   padding-right: 1.1rem;
   font-size: .875rem;
@@ -1823,7 +1823,7 @@ figcaption {
 }
 
 .project-tag.w--current {
-  border-bottom: 2px solid var(--\<unknown\|relume-variable-color-neutral-1\>);
+  border-bottom: 2px solid var(--white);
 }
 
 .project-button-wrapper {
@@ -1977,7 +1977,7 @@ figcaption {
 }
 
 .success-message {
-  background-color: var(--\<unknown\|relume-variable-color-neutral-3\>);
+  background-color: var(--light-grey);
   padding: 1.5rem;
 }
 
@@ -2085,7 +2085,7 @@ figcaption {
 }
 
 .footer-address {
-  color: var(--\<unknown\|relume-variable-link-color-1\>);
+  color: var(--black);
   padding: .5rem .75rem;
   font-size: .875rem;
   text-decoration: none;
@@ -2600,7 +2600,7 @@ figcaption {
 }
 
 .blog-date.w--current {
-  border-bottom: 2px solid var(--\<unknown\|relume-variable-color-neutral-1\>);
+  border-bottom: 2px solid var(--white);
 }
 
 .blog-header-image-wrapper {
@@ -2942,7 +2942,7 @@ figcaption {
   }
 
   .navbar-menu-link-wrapper {
-    border: 1px none var(--\<unknown\|relume-variable-border-color-1\>);
+    border: 1px none var(--black);
     background-color: var(--light-grey);
     flex-direction: column;
     width: 100%;
