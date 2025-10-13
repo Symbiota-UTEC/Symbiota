@@ -269,55 +269,59 @@ include_once($SERVER_ROOT . '/includes/googleanalytics.php');
       <section class="section-client-logos">
         <div class="padding-global">
           <div class="container-large">
-            <div class="margin-bottom margin-medium">
-              <div class="text-align-center">
-                <div class="max-width-large align-center">
-                  <h2
-                    data-w-id="576ff569-64c2-db91-4d37-47cc9f670703"
-                    style="opacity:0"
-                    class="text-size-medium"
-                  >
-                    Este proyecto ha sido posible gracias a:
-                  </h2>
+            <div class="logo-panel">
+              <div class="margin-bottom margin-medium">
+                <div class="text-align-center">
+                  <div class="max-width-large align-center">
+                    <h2
+                      data-w-id="576ff569-64c2-db91-4d37-47cc9f670703"
+                      style="opacity:0"
+                      class="text-size-medium"
+                    >
+                      Este proyecto ha sido posible gracias a:
+                    </h2>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div
-              data-w-id="576ff569-64c2-db91-4d37-47cc9f670705"
-              style="opacity:0"
-              class="logo-component"
-            >
-              <img
-                src="images/index/UNMSM.png"
-                loading="lazy"
-                id="w-node-_576ff569-64c2-db91-4d37-47cc9f670706-975072ba"
-                height="Auto"
-                alt="UNMSM"
-                srcset="images/index/UNMSM-p-500.png 500w, images/index/UNMSM.png 848w"
-                sizes="(max-width: 848px) 100vw, 848px"
-                class="client-logo"
-              />
-              <img
-                src="images/index/mhn-logo.png"
-                loading="lazy"
-                width="Auto"
-                id="w-node-_576ff569-64c2-db91-4d37-47cc9f670708-975072ba"
-                alt="Museo de Historia Natural"
-                srcset="images/index/mhn-logo-p-500.png 500w, images/index/mhn-logo-p-800.png 800w, images/index/mhn-logo.png 986w"
-                sizes="(max-width: 986px) 100vw, 986px"
-                class="client-logo"
-              />
-              <img
-                src="images/index/symbiota.png"
-                loading="lazy"
-                width="Auto"
-                id="w-node-_9ced24a2-1756-1c77-bb19-ed647809dce7-975072ba"
-                alt="Symbiota"
-                srcset="images/index/symbiota-p-500.png 500w, images/index/symbiota-p-800.png 800w, images/index/symbiota.png 1024w"
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                class="client-logo"
-              />
+              <div class="logo-panel-divider"></div>
+
+              <div
+                data-w-id="576ff569-64c2-db91-4d37-47cc9f670705"
+                style="opacity:0"
+                class="logo-component"
+              >
+                <img
+                  src="images/index/UNMSM.png"
+                  loading="lazy"
+                  id="w-node-_576ff569-64c2-db91-4d37-47cc9f670706-975072ba"
+                  height="Auto"
+                  alt="UNMSM"
+                  srcset="images/index/UNMSM-p-500.png 500w, images/index/UNMSM.png 848w"
+                  sizes="(max-width: 848px) 100vw, 848px"
+                  class="client-logo"
+                />
+                <img
+                  src="images/index/mhn-logo.png"
+                  loading="lazy"
+                  width="Auto"
+                  id="w-node-_576ff569-64c2-db91-4d37-47cc9f670708-975072ba"
+                  alt="Museo de Historia Natural"
+                  srcset="images/index/mhn-logo-p-500.png 500w, images/index/mhn-logo-p-800.png 800w, images/index/mhn-logo.png 986w"
+                  sizes="(max-width: 986px) 100vw, 986px"
+                  class="client-logo"
+                />
+                <img
+                  src="images/index/symbiota.png"
+                  loading="lazy"
+                  width="Auto"
+                  id="w-node-_9ced24a2-1756-1c77-bb19-ed647809dce7-975072ba"
+                  alt="Symbiota"
+                  srcset="images/index/symbiota-p-500.png 500w, images/index/symbiota-p-800.png 800w, images/index/symbiota.png 1024w"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                  class="client-logo"
+                />
+              </div>
             </div>
           </div>
         </div>
