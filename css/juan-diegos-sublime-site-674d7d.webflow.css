@@ -4721,3 +4721,12 @@ figcaption {
 
 /* Prevent content from hiding under fixed navbar */
 .page-wrapper.navbar-on-page { padding-top: 64px; }
+
+/* Navbar text/icons = white */
+.navbar-link,
+.navbar-link.w--current { color: var(--white); }
+.navbar-link:hover { color: var(--white); }
+
+.menu-icon-line-top,
+.menu-icon-line-middle,
+.menu-icon-line-bottom { background-color: var(--white); }
