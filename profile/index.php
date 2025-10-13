@@ -1,6 +1,89 @@
 <?php
 include_once('../config/symbini.php');
 include_once('../classes/utilities/GeneralUtil.php');
+require_once $SERVER_ROOT . '/vendor/autoload.php';
+
+// ===== MinIO test upload helper (usa AWS SDK) =====
+if (!class_exists('\Aws\S3\S3Client')) {
+    $vendorAutoload = $SERVER_ROOT . '/vendor/autoload.php';
+    if (file_exists($vendorAutoload)) {
+        require_once($vendorAutoload);
+    }
+}
+
+function symb_minio_test_upload_png() {
+    // Toma config desde symbini.php y/o variables de entorno
+    global $TEMP_DIR_ROOT, $S3_ENDPOINT, $S3_REGION, $S3_BUCKET, $S3_ACCESS_KEY, $S3_SECRET_KEY, $S3_PATH_STYLE;
+
+    if (!class_exists('\Aws\S3\S3Client')) {
+        error_log('[MinIO Test] AWS SDK not present; skipping upload.');
+        $_SESSION['last_message'] = '<br/><span style="color:red">MinIO test: AWS SDK no instalado</span>';
+        return false;
+    }
+
+	
+    // 1) Crear PNG temporal
+    $tmpDir = $TEMP_DIR_ROOT ?: sys_get_temp_dir();
+    if (!is_dir($tmpDir)) { @mkdir($tmpDir, 0775, true); }
+    $ts = date('Ymd_His');
+    $tmpFile = rtrim($tmpDir, '/')."/minio_ping_$ts.png";
+
+    if (function_exists('imagecreatetruecolor')) {
+        $im = imagecreatetruecolor(240, 80);
+        $bg = imagecolorallocate($im, 240, 240, 240);
+        $fg = imagecolorallocate($im, 60, 60, 60);
+        imagefilledrectangle($im, 0, 0, 239, 79, $bg);
+        imagestring($im, 5, 10, 30, "MinIO ping $ts", $fg);
+        imagepng($im, $tmpFile);
+        imagedestroy($im);
+    } else {
+        // 1x1 PNG como fallback
+        file_put_contents($tmpFile, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAukB9V3sT2gAAAAASUVORK5CYII='));
+    }
+
+    // 2) Cliente S3 -> MinIO
+	error_log("llegue aqui");
+    $client = new \Aws\S3\S3Client([
+        'version' => 'latest',
+        'region'  => $S3_REGION ?: 'us-east-1',
+        'endpoint'=> $S3_ENDPOINT ?: 'http://minio:9000',
+        'use_path_style_endpoint' => ($S3_PATH_STYLE === true || $S3_PATH_STYLE === 'true' || $S3_PATH_STYLE === 1 || $S3_PATH_STYLE === '1'),
+        'credentials' => [
+            'key'    => $S3_ACCESS_KEY ?: '',
+            'secret' => $S3_SECRET_KEY ?: '',
+        ],
+    ]);
+
+	error_log("llegue aqui 2");
+
+    $bucket = $S3_BUCKET ?: 'symbiota-images';
+    $key = "test-uploads/minio_ping_{$ts}-".bin2hex(random_bytes(3)).".png";
+
+    try {
+        $res = $client->putObject([
+            'Bucket'      => $bucket,
+            'Key'         => $key,
+            'SourceFile'  => $tmpFile,
+            'ContentType' => 'image/png',
+            'ACL'         => 'private',
+        ]);
+        @unlink($tmpFile);
+        // Mensaje que puedes ver en la siguiente carga de página que lo lea
+        $_SESSION['last_message'] = "<br/>MinIO test upload OK → <code>{$key}</code>";
+		error_log("llegue aqui 3");
+
+        return $key;
+    } catch (\Throwable $e) {
+		error_log("llegue aqui 4");
+
+        error_log('[MinIO Test] Upload failed: '.$e->getMessage());
+        @unlink($tmpFile);
+        $_SESSION['last_message'] = "<br/><span style=\"color:red\">MinIO test upload failed</span>";
+        return false;
+    }
+}
+// ===== /MinIO test upload helper =====
+
 
 if(!empty($THIRD_PARTY_OID_AUTH_ENABLED)){
 	include_once($SERVER_ROOT . '/config/auth_config.php');
@@ -97,6 +180,8 @@ if($action == 'logout'){
 }
 elseif($action == 'login'){
 	if($pHandler->authenticate($_POST['password'])){
+		symb_minio_test_upload_png();
+
 		if(!$refUrl || (strtolower(substr($refUrl,0,4)) == 'http') || strpos($refUrl,'newprofile.php')){
 			header('Location: ../index.php');
 		}

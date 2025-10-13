@@ -2,6 +2,9 @@
 include_once('../../config/symbini.php');
 if($LANG_TAG != 'en' && file_exists($SERVER_ROOT.'/content/lang/collections/editor/occurrenceeditor.'.$LANG_TAG.'.php')) include_once($SERVER_ROOT.'/content/lang/collections/editor/occurrenceeditor.'.$LANG_TAG.'.php');
 else include_once($SERVER_ROOT.'/content/lang/collections/editor/occurrenceeditor.en.php');
+
+include_once($SERVER_ROOT.'/webservices/minioImageUploader.php');
+
 header('Content-Type: text/html; charset=' . $CHARSET);
 
 $occId = array_key_exists('occid', $_REQUEST) ? filter_var($_REQUEST['occid'], FILTER_SANITIZE_NUMBER_INT) : '';
@@ -175,6 +178,27 @@ if($SYMB_UID){
 			if($action == 'addOccurRecord'){
 				error_log("Adding Ocurrence Record");
 				if($occManager->addOccurrence($_POST)){
+
+					$newOccId = $occManager->getOccId();
+
+					if(isset($_FILES['imgfile']) && is_array($_FILES['imgfile'])
+						&& !empty($_FILES['imgfile']['name'])
+						&& isset($_FILES['imgfile']['tmp_name'])
+						&& is_uploaded_file($_FILES['imgfile']['tmp_name'])
+						&& (int)($_FILES['imgfile']['error']) === UPLOAD_ERR_OK) {
+
+						try {
+							$occur_map = $occManager->getOccurMap()[$newOccId] ?? [];
+							$catalogNumber = (string)($occur_map['catalognumber'] ?? '');
+
+							$up = upload_collection_image($_FILES['imgfile'], (string)$collId, $catalogNumber);
+
+							$statusStr = trim($statusStr . ' ') . 'Se pudo cargar la imagen correctamente!';
+						} catch(Exception $e) {
+							$statusStr = trim($statusStr . ' ') . 'ERROR al cargar la imagen: ' . $e->getMessage();
+						}
+					}
+
 					$occManager->setQueryVariables();
 					$qryCnt = $occManager->getQueryRecordCount();
 					$qryCnt++;
@@ -1085,7 +1109,7 @@ document.addEventListener('DOMContentLoaded', function(){
 								?>
 							</ul>
 							<div id="occdiv">
-								<form id="fullform" name="fullform" action="occurrenceeditor.php" method="post" onsubmit="return verifyFullForm(this);">
+								<form id="fullform" name="fullform" action="occurrenceeditor.php" method="post" enctype="multipart/form-data" onsubmit="return verifyFullForm(this);">
 									<fieldset>
 										<legend><?= $LANG['COLLECTOR_INFO'] ?></legend>
 										<?php
@@ -1967,6 +1991,16 @@ document.addEventListener('DOMContentLoaded', function(){
 										}
 									}
 									?>
+									<fieldset>
+									<legend>Imagen (opcional)</legend>
+									<div class="field-div">
+										<label for="imgfile">Adjuntar imagen</label><br/>
+										<input type="file" name="imgfile" id="imgfile" accept="image/*" />
+										<div style="font-size:12px;margin-top:6px;color:#6b7280;">
+										Si seleccionas una imagen, se subirá junto con el registro.
+										</div>
+									</div>
+									</fieldset>
 									<div id="bottomSubmitDiv">
 										<input type="hidden" name="occid" value="<?php echo $occManager->getOccId(); ?>" />
 										<input type="hidden" name="collid" value="<?php echo $collId; ?>" />
