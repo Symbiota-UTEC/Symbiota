@@ -161,6 +161,17 @@ include_once($SERVER_ROOT . '/includes/googleanalytics.php');
       class="navbar-component navbar w-nav"
     >
       <div class="navbar-container">
+        <!-- Brand -->
+        <a href="index.php" class="nav-brand transition-all-smooth">
+          <div class="brand-logo-wrapper">
+            <div class="brand-glow"></div>
+            <img src="images/index/UNMSM.png" width="64" height="64" alt="Herbario USM Logo" class="brand-logo" decoding="async" />
+          </div>
+          <div class="brand-text-wrapper">
+            <h1 class="brand-title">Herbario USM</h1>
+            <p class="brand-subtitle">Universidad Nacional Mayor de San Marcos</p>
+          </div>
+        </a>
         <nav role="navigation" class="navbar-menu w-nav-menu">
           <div class="navbar-menu-link-wrapper">
             <a href="index.php" aria-current="page" class="navbar-link w-nav-link w--current">Home</a>

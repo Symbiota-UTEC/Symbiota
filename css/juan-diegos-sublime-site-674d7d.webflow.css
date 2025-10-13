@@ -4701,7 +4701,7 @@ figcaption {
   border-radius: 0;
   padding: .5rem 0;
   display: flex;
-  justify-content: center; /* or space-between if desired */
+  justify-content: space-between; /* brand left, controls right */
 }
 
 /* Remove the desktop-only override that reintroduced padding/margins */
@@ -4713,9 +4713,76 @@ figcaption {
   }
 }
 
-/* Por si algún estilo heredado lo pisa, fuerza centrado de enlaces */
+/* Navbar menu layout inside fixed bar */
 .navbar-menu{
-  margin: 0 auto;
+  margin: 0;
+}
+
+/* Navbar brand (logo + text), Tailwind-free */
+.nav-brand{
+  display: flex;
+  align-items: center;
+  gap: .75rem; /* ~space-x-3 */
+  text-decoration: none;
+  transform: translateZ(0);
+  transition: transform .25s ease;
+}
+.nav-brand:hover{ transform: scale(1.05); }
+
+/* Smooth transition utility */
+.transition-all-smooth{ transition: all .25s ease; }
+
+/* Logo wrapper: 48px on mobile, 64px on large screens */
+.brand-logo-wrapper{
+  position: relative;
+  width: 3rem; height: 3rem;
+}
+@media (min-width: 1024px){
+  .brand-logo-wrapper{ width: 4rem; height: 4rem; }
+}
+
+/* Soft glow behind the logo */
+.brand-glow{
+  position: absolute; inset: 0;
+  background: rgba(46,125,50,.2); /* botanical green-ish */
+  border-radius: 9999px;
+  filter: blur(4px);
+  transition: filter .25s ease;
+}
+.nav-brand:hover .brand-glow{ filter: blur(0); }
+
+/* Logo image */
+.brand-logo{
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+
+/* Text block: hidden on xs, visible from sm up */
+.brand-text-wrapper{ display: none; }
+@media (min-width: 640px){
+  .brand-text-wrapper{ display: block; }
+}
+
+/* Title + subtitle */
+.brand-title{
+  margin: 0;
+  font-family: Playfair Display, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem; /* text-xl */
+  color: #fff;
+}
+@media (min-width: 1024px){
+  .brand-title{ font-size: 1.5rem; } /* lg:text-2xl */
+}
+.brand-subtitle{
+  margin: 0;
+  font-size: .75rem;        /* text-xs */
+  font-weight: 500;
+  color: rgba(255,255,255,.8); /* text-white/80 */
+}
+@media (min-width: 1024px){
+  .brand-subtitle{ font-size: .875rem; } /* lg:text-sm */
 }
 
 /* Prevent content from hiding under fixed navbar */
