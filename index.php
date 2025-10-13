@@ -1,5 +1,11 @@
 <?php
-include_once('./config/symbini.php');
+include_once('config/symbini.php');
+if ($LANG_TAG == 'en' || !file_exists($SERVER_ROOT.'/content/lang/templates/index.'.$LANG_TAG.'.php')) {
+    include_once($SERVER_ROOT.'/content/lang/templates/index.en.php');
+} else {
+    include_once($SERVER_ROOT.'/content/lang/templates/index.'.$LANG_TAG.'.php');
+}
+header('Content-Type: text/html; charset=' . $CHARSET);
 ?>
 <!DOCTYPE html>
 <!--  This site was created in Webflow. https://webflow.com  -->
@@ -7,9 +13,15 @@ include_once('./config/symbini.php');
 <html data-wf-page="68df53b2eb89388e975072ba" data-wf-site="68df53afeb89388e97507271" lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Nova X - Webflow HTML website template</title>
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Webflow" name="generator" />
+
+  <title><?php echo $DEFAULT_TITLE; ?> <?php echo $LANG['HOME']; ?></title>
+  <?php
+  include_once($SERVER_ROOT . '/includes/head.php');
+include_once($SERVER_ROOT . '/includes/googleanalytics.php');
+?>
+
 
   <!-- CSS base -->
   <link href="css/normalize.css" rel="stylesheet" type="text/css" />
