@@ -4856,3 +4856,8 @@ footer .footer-link:hover {
 footer .footer-line-divider {
   background-color: rgba(255,255,255,.3);
 }
+
+/* Tighten gap between hero button block and image */
+.section-hero-header .margin-bottom.margin-xxlarge {
+  margin: 0 0 1.5rem 0;
+}
