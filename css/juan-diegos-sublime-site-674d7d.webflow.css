@@ -4898,6 +4898,26 @@ footer .footer-line-divider {
   }
 }
 
+/* White cards behind partner logos for legibility */
+.logo-component .client-logo {
+  background: #fff;
+  padding: .5rem;
+  border-radius: .75rem;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 991px){
+  .logo-component .client-logo { padding: .4rem; border-radius: .5rem; }
+}
+@media screen and (max-width: 767px){
+  .logo-component .client-logo { padding: .35rem; }
+}
+@media screen and (max-width: 479px){
+  .logo-component .client-logo { padding: .25rem; }
+}
+
 /* Tighten gap between hero button block and image */
 .section-hero-header .margin-bottom.margin-xxlarge {
   margin: 0 0 1.5rem 0;
