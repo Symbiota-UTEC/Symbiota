@@ -4818,6 +4818,7 @@ footer {
 
 /* Remove side padding at the outer footer edge, keep inner content centered */
 footer .padding-global {
+  padding-top: 0;
   padding-left: 0;
   padding-right: 0;
 }
